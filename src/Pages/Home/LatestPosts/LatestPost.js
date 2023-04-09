@@ -1,25 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const LatestPost = () => {
+const LatestPost = ({post}) => {
+
+  const {_id, img, heading} = post;
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
         <div className="card bg-base-100 shadow-xl">
           <figure>
             <img
-              src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+              src={img}
               alt="Shoes"
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <h2 className="card-title">{heading}</h2>
+            
             <div className="card-actions justify-end">
+              <Link to={`/seeDetails/${_id}`}>
               <button className="btn btn-primary">See Details</button>
+              </Link>
             </div>
           </div>
         </div>
         
-      </div>
+      
     );
 };
 
