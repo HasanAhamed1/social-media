@@ -4,6 +4,12 @@ import Home from "../../Home/Home/Home"
 import Login from "../../Login/Login";
 import SignUp from "../../SignUp/SignUp";
 import SeeDetails from "../../SeeDetails/SeeDetails";
+import Media from "../../Media/Media";
+import About from "../../About/About";
+import Abouts from "../../About/Abouts";
+import Update from "../../Update/Update";
+import Message from "../../Message/Message";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -24,8 +30,25 @@ const router = createBrowserRouter([
             },
             {
                 path: '/seeDetails/:id',
-                element: <SeeDetails></SeeDetails>,
+                element: <PrivateRoute><SeeDetails></SeeDetails></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/posts/${params.id}`)
+            },
+            {
+                path: '/media',
+                element: <Media></Media>
+            },
+            {
+                path: '/about',
+                element: <Abouts></Abouts>
+            },
+            {
+                path: '/about/:id',
+                element: <Update></Update>,
+                loader: ({params}) => fetch(`http://localhost:5000/about/${params.id}`)
+            },
+            {
+                path: '/message',
+                element: <Message></Message>
             }
         ]
     }
